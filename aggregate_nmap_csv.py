@@ -71,7 +71,7 @@ def main():
     for row in data:
         
         ip = row[H_IP]
-        if ip == H_IP:
+        if ip == H_IP or "." not in ip:
             continue
         host_dict = hosts_dict[ip]
         host_dict[H_IP]=ip
@@ -96,7 +96,7 @@ def main():
             
     hosts_dict = dict(hosts_dict)
     
-    with open(outcsvpath,"w") as csvfile:
+    with open(outcsvpath,"w",newline="") as csvfile:
         fieldnames = columns
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
